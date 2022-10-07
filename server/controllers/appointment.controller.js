@@ -1,4 +1,4 @@
-const Service = require('../models/service.model');
+const Appointment = require('../models/appointment.model');
 
 module.exports.index = (request, response) => {
     response.json({
@@ -7,18 +7,18 @@ module.exports.index = (request, response) => {
 }
 
 module.exports.create = (request, response) => {
-    Service.create(request.body) 
-    .then(service => response.json(service))
+    Appointment.create(request.body) 
+    .then(appointment => response.json(appointment))
     .catch((err) => {
         response.status(400).json({ err });
     });
 }
 
 module.exports.getAll = (request, response) => {
-    Service.find({})
-        .then(services => {
-            console.log(services);
-            response.json(services);
+    Appointment.find({})
+        .then(appointments => {
+            console.log(appointments);
+            response.json(appointments);
         })
         .catch((err) => {
             res.status(400).json({ err });
@@ -26,15 +26,15 @@ module.exports.getAll = (request, response) => {
 }
 
 module.exports.getOne = (request, response) => {
-    Service.findOne({_id:request.params.id})
-        .then(service => response.json(service))
+    Appointment.findOne({_id:request.params.id})
+        .then(appointment => response.json(appointment))
         .catch((err) => {
             response.status(400).json({ err });
     });
 }
 
 module.exports.update = (request, response) => {
-    Service.findOneAndUpdate({_id: request.params.id}, request.body, {new:true, runValidators:true})
+    Appointment.findOneAndUpdate({_id: request.params.id}, request.body, {new:true, runValidators:true})
         .then(updated => response.json(updated))
         .catch((err) => {
             response.status(400).json({ err });
@@ -42,7 +42,7 @@ module.exports.update = (request, response) => {
 }
 
 module.exports.delete = (request, response) => {
-    Service.deleteOne({ _id: request.params.id }) 
+    Appointment.deleteOne({ _id: request.params.id }) 
         .then(deleteConfirmation => response.json(deleteConfirmation))
         .catch((err) => {
             res.status(400).json({ err });

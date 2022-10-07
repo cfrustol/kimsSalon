@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const KimSalonSchema = new mongoose.Schema({
-    type: { 
+    service: { 
         type: String,
         required: [ true, "Please select service type" ],
     },
@@ -13,5 +13,5 @@ const KimSalonSchema = new mongoose.Schema({
         required: [ true, "Please select a time"],
     }
 }, { timestamps: true });
-module.exports = mongoose.model('Service', KimSalonSchema);
+module.exports = mongoose.model('Appointment', KimSalonSchema);
 
