@@ -10,6 +10,7 @@ app.use(express.json());                           /* This is new and allows JSO
 app.use(express.urlencoded({ extended: true }));   /* This is new and allows JSON Objects with strings and arrays*/
 require('./config/mongoose.config');    
 require('./routes/appointment.routes')(app);
+require('./routes/user.routes')(app);
 
 // const jwt = require('jsonwebtoken');
 // var token = jwt.sign({id: 'jjs2n8s1380js'}, process.env.SECRET_KEY);

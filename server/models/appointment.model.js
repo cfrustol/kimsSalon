@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const KimSalonSchema = new mongoose.Schema({
+const AppointmentSchema = new mongoose.Schema({
     service: { 
         type: String,
         required: [ true, "Please select service type" ],
@@ -11,7 +11,11 @@ const KimSalonSchema = new mongoose.Schema({
     time: { 
         type: String,
         required: [ true, "Please select a time"],
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }
 }, { timestamps: true });
-module.exports = mongoose.model('Appointment', KimSalonSchema);
+module.exports = mongoose.model('Appointment', AppointmentSchema);
 

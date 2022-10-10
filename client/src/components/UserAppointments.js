@@ -30,38 +30,26 @@ const UserAppointments = (props) => {
     
     
     return ( 
-        <div>
-            <h1>My Appointments</h1>
-            <h3>Upcoming Appointments</h3>
-        
-            <table>
+        <div className=' h-max m-5'>
+            <h1 className=' text-4xl p-4'>My Appointments</h1>
+            <h3 className=' text-2xl p-4'>Upcoming Appointments</h3>
+            <div className=' grid grid-cols-3 gap-4 w-max '>
             {
                 appointments.map((appointment, index)=>{
                 return (
-                <div key={index}>
-                    <thead>
-                        <tr>
-                            <td>Service</td>
-                            <td>Day</td>
-                            <td>Time</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                                <td>{appointment.service}</td>
-                                <td>{appointment.day}</td>
-                                <td>{appointment.time}</td>
-                                <td>
-                                    <Link to={"/appointments/edit/" + appointment._id}><button>Modify Appointment</button></Link>
-                                    <span> | </span>
-                                    <button onClick={(e)=>{deleteAppointment(appointment._id)}}>Cancel Appointment</button>
-                                </td>
-                        </tr>
-                    </tbody>
-                </div> 
-                    )})
-                }
-            </table>
+                    <div key={index}>    
+                        <div className='border-4 rounded-lg border-blue bg-off-white shadow hover:shadow-lg w-max p-4 space-y-4'>
+                            <p>Service: {appointment.service}</p>
+                            <p>Day: {appointment.day}</p>
+                            <p>Time: {appointment.time}</p>   
+                            <Link to={"/appointments/edit/" + appointment._id}><button className=' p-2 rounded-md bg-gray-dark text-white hover:text-blue'>Modify Appointment</button></Link>
+                            <span className='text-xl'> </span>
+                            <button onClick={(e)=>{deleteAppointment(appointment._id)}} className= ' p-2 rounded-md bg-gray-dark text-white hover:text-orange'>Cancel Appointment</button>
+                        </div>
+                    </div> 
+                )})
+            }
+            </div> 
         </div>
     )
 }
