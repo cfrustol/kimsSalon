@@ -1,28 +1,51 @@
 import React from "react";
 import { createContext, useReducer } from "react";
+import axios from "axios";
 
 
-export const AuthContext = createContext()
+const AuthContext = createContext()
 
-export const authReducer = (state, action) => {
-    switch (action.type) {
-        case 'LOGIN':
-            return {user: action.payload}
-        case 'LOGOUT':
-            return {user:null}
+const initialState = {user:null}
+
+const reducer = (state,action)=>{
+    switch(action.type){
+        case "SET_USER":
+            return{
+                ...state,
+                user:action.payload
+            }
+        case "NULL_USER":
+            return{
+                ...state,
+                user:null
+            }
+        case"LOGOUT_USER":
+            console.log("logout")
+            axios.get('http://localhost:8000/api/logout',{withCredentials:true})
+            .then(()=>{
+                action.payload('/')
+            })
+            .catch(()=>{
+                action.payload('/')
+            })
+            return{
+                ...state,
+                user:null
+            }
         default:
             return state
     }
+
 }
 
-export const AuthContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(authReducer, {
-        user:null
-    })
-    
-    return (
-    <AuthContext.Provider value={{...state, dispatch}}>
-        { children }
+const AuthContextProvider = ({children}) => {
+    const [state,dispatch] = useReducer(reducer,initialState)
+
+  return (
+    <AuthContext.Provider value={{state,dispatch}}>
+        {children}
     </AuthContext.Provider>
-)
+  )
 }
+
+export {AuthContextProvider,AuthContext}

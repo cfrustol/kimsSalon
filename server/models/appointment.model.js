@@ -7,12 +7,13 @@ const AppointmentSchema = new mongoose.Schema({
     day: { 
         type: String,
         required: [ true, "Please select a day"],
+        
     },
     time: { 
         type: String,
         required: [ true, "Please select a time"],
     },
-    user: {
+    user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }

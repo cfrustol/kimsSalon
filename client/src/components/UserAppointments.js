@@ -41,6 +41,7 @@ const UserAppointments = (props) => {
                         <div className='border-4 rounded-lg border-blue bg-off-white shadow hover:shadow-lg w-max p-4 space-y-4'>
                             <p>Service: {appointment.service}</p>
                             <p>Day: {appointment.day}</p>
+                            {/* <p>Day: {appointment.day.toDateString()}</p> */}
                             <p>Time: {appointment.time}</p>   
                             <Link to={"/appointments/edit/" + appointment._id}><button className=' p-2 rounded-md bg-gray-dark text-white hover:text-blue'>Modify Appointment</button></Link>
                             <span className='text-xl'> </span>

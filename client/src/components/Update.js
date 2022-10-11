@@ -74,6 +74,7 @@ const Update = (props) => {
                                 <option value="friday">Friday</option>
                                 <option value="saturday">Saturday</option>
                             </select>
+                            {/* <input type="date"  onChange={(e)=>setDay(e.target.value)}></input> */}
                             {errors.day ? <p className=' text-orange'>{errors.day.message}</p> : null}
                         </div>
                         <div className='grid grid-cols-3 items-center gap-2'>

@@ -1,10 +1,6 @@
 const Appointment = require('../models/appointment.model');
-
-module.exports.index = (request, response) => {
-    response.json({
-        message: "Hello World"
-    });
-}
+const User = require('../models/user.model')
+const jwt = require('jsonwebtoken')
 
 module.exports.create = (request, response) => {
     Appointment.create(request.body) 
@@ -12,6 +8,29 @@ module.exports.create = (request, response) => {
     .catch((err) => {
         response.status(400).json({ err });
     });
+}
+
+const addNewAppointment = async (req, res) => {
+    const { body } = req;
+    let newAppointment = new Appointment(body);
+    console.log(newAppointment);
+    const decodedJwt = jwt.decode(req.cookies.usertoken, { complete: true});
+    console.log("TOKEN", decodedJwt);
+    console.log("ID: ", decodedJwt.payload.id);
+    newAppointment.user_id = decodedJwt.payload.id;
+    console.log('new appointment added id', newAppointment)
+    try {
+        newAppointment = await newAppointment.save();
+        res.json(newAppointment);
+        return;
+    } catch (error) {
+        console.log("error", error);
+        res.status(400).json(error);
+    }
+}
+
+module.exports = {
+    addNewAppointment,
 }
 
 module.exports.getAll = (request, response) => {

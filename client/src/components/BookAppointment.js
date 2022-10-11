@@ -1,30 +1,53 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import NavBar from './NavBar';
 
 const BookAppointment = () => {
+    const {state} = useContext(AuthContext)
     const [service, setService] = useState(""); 
     const [day, setDay] = useState(""); 
     const [time, setTime] = useState("");  
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
+    
+    useEffect(()=>{
+    console.log("on book appointment add")
+    !state.user && navigate('/bookAppointment')
+    
+  },[])
+    
+    const handleDateChange = (e) => {
+        e.preventDefault();
+        let dayPicked = new Date();
+        const weekday = dayPicked.getUTCDay();
+        if(weekday === 0){
+            dayPicked = '';
+        }
+        setDay(dayPicked)
+        console.log(day)
+        return dayPicked
+    }
+
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/appointments/', {
             service,
             day,
             time,
-        })
+            }, {withCredentials:true})
             .then(res=>{
                 console.log(res);
                 console.log(res.data);
                 navigate("/myAppointments");
             })
-            .catch((err) => {
-                console.log(err.response.data.err.errors);
-                setErrors(err.response.data.err.errors);
+            .catch((error) => {
+                console.log(error.response.data.errors);
+                setErrors(error.response.data.errors);
       });
+
+    
     }
 
     return (
@@ -54,6 +77,7 @@ const BookAppointment = () => {
                             <option value="friday">Friday</option>
                             <option value="saturday">Saturday</option>
                         </select>
+                        {/* <input type="date"   onChange={(e)=>setDay(e.target.value)}></input> */}
                         {errors.day ? <p className=' text-orange'>{errors.day.message}</p> : null}
                     </div>
                     <div className='grid grid-cols-3 items-center gap-4'>
