@@ -57,8 +57,8 @@ const Update = (props) => {
                             <label>Service:</label>
                             <select className='px-4 py-2 rounded-lg' name="service" id="service" value={service} onChange = {(e)=>setService(e.target.value)}>
                                 <option value="">Select</option>
-                                <option value="manicure">Manicure</option>
-                                <option value="pedicure">Pedicure</option>
+                                <option value="Manicure">Manicure</option>
+                                <option value="Pedicure">Pedicure</option>
                                 <option value="gel">Gel</option>
                             </select>
                             {errors.service ? <p className=' text-orange'>{errors.service.message}</p> : null}
@@ -66,13 +66,13 @@ const Update = (props) => {
                         <div className='grid grid-cols-3 items-center gap-2'>
                             <label>Day:</label>
                             <select className='px-4 py-2 rounded-lg' name="day" id="day" value={day} onChange = {(e)=>setDay(e.target.value)}>
-                                <option value="">Select</option>
-                                <option value="monday">Monday</option>
-                                <option value="tuesday">Tuesday</option>
-                                <option value="wednesday">Wednesday</option>
-                                <option value="thursday">Thursday</option>
-                                <option value="friday">Friday</option>
-                                <option value="saturday">Saturday</option>
+                            <option value="">Select</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
                             </select>
                             {/* <input type="date"  onChange={(e)=>setDay(e.target.value)}></input> */}
                             {errors.day ? <p className=' text-orange'>{errors.day.message}</p> : null}
@@ -80,13 +80,17 @@ const Update = (props) => {
                         <div className='grid grid-cols-3 items-center gap-2'>
                             <label>Time</label>
                             <select className='px-4 py-2 rounded-lg' name="time" id="time" value={time} onChange = {(e)=>setTime(e.target.value)}>
-                                <option value="">Select</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
+                            <option value="">Select</option>
+                            <option value="9a">9a</option>
+                            <option value="10a">10a</option>
+                            <option value="11a">11a</option>
+                            <option value="12p">12p</option>
+                            <option value="1p">1p</option>
+                            <option value="2p">2p</option>
+                            <option value="3p">3p</option>
+                            <option value="4p">4p</option>
+                            <option value="5p">5p</option>
+                            <option value="6p">6p</option>
                             </select>
                             {errors.time ? <p className=' text-orange'>{errors.time.message}</p> : null}
                         </div>

@@ -10,7 +10,7 @@ const AppointmentSchema = new mongoose.Schema({
         
     },
     time: { 
-        type: Number,
+        type: String,
         required: [ true, "Please select a time"],
     },
     user_id: {
