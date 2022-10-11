@@ -3,9 +3,6 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-// import { useRegister } from '../hooks/useRegister';
-
-
 const Register = ({user, setLoggedIn}) => {
     const {state,dispatch} = useContext(AuthContext);
     const [firstName, setFirstName] = useState(""); 
@@ -51,10 +48,6 @@ const Register = ({user, setLoggedIn}) => {
                 setErrors(err.response.data.error.errors);
                 console.log(err.response.data.error.errors);
             })
-    //         .catch((err) => {
-    //             setError(err.response.data.error);
-    //             console.log(err.response.data.error);
-    //   })
     ;
     }
 
@@ -83,7 +76,7 @@ const Register = ({user, setLoggedIn}) => {
                         </div>
                         <div className='grid grid-cols-2 items-center'>
                             <label>Phone Number:</label>
-                            <input className="rounded w-full" type="text" name="phoneNumber" id="phoneNumber" onChange = {(e)=>setPhoneNumber(e.target.value)}/>
+                            <input className="rounded w-full" type="tel" id="phone" name="phone" placeholder="123-453-6780" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onChange = {(e)=>setPhoneNumber(e.target.value)}/>
                             {errors.phoneNumber ? <p className=' text-orange'>{errors.phoneNumber.message}</p> : null}
                         </div>
                         <div className='grid grid-cols-2 items-center'>

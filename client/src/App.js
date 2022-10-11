@@ -5,11 +5,11 @@ import BookAppointment from './components/BookAppointment';
 import MyAppointments from './views/MyAppointments';
 import Update from './components/Update';
 import RegisterLogin from './views/RegisterLogin';
-// import { AuthContext } from './context/AuthContext';
+
 
 function App() {
   const [loggedIn,setLoggedIn] = useState(false)
-  // const {state,dispatch} = useContext(AuthContext)
+  
 
   return (
     <div>

@@ -33,14 +33,15 @@ module.exports = {
     addNewAppointment,
 }
 
-module.exports.getAll = (request, response) => {
-    Appointment.find({})
+module.exports.getAll = (req, response) => {
+    const decodedJwt = jwt.decode(req.cookies.usertoken, { complete: true});
+    Appointment.find({user_id: decodedJwt.payload.id})
         .then(appointments => {
             console.log(appointments);
             response.json(appointments);
         })
         .catch((err) => {
-            res.status(400).json({ err });
+            response.status(400).json({ err });
     });
 }
 
